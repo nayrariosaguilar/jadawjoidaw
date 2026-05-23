@@ -9,11 +9,15 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const initial: Theme = document.documentElement.classList.contains("dark")
-      ? "dark"
-      : "light";
-    setTheme(initial);
-    setMounted(true);
+    const timer = window.setTimeout(() => {
+      const initial: Theme = document.documentElement.classList.contains("dark")
+        ? "dark"
+        : "light";
+      setTheme(initial);
+      setMounted(true);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   function toggle() {

@@ -4,19 +4,24 @@ import { useState } from "react";
 import type { Product } from "@/app/lib/products";
 import { useCart } from "./cart-context";
 
+const CUSTOM_MAX = 500;
+
 export default function AddToCart({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [size, setSize] = useState<string>(product.sizes[0]);
   const [color, setColor] = useState<string>(product.colors[0].name);
+  const [custom, setCustom] = useState<string>("");
   const [added, setAdded] = useState(false);
 
   function handleAdd() {
+    const trimmed = custom.trim();
     addItem({
       slug: product.slug,
       name: product.name,
       price: product.price,
       size,
       color,
+      custom: trimmed ? trimmed : undefined,
     });
     setAdded(true);
     window.setTimeout(() => setAdded(false), 2000);
@@ -44,6 +49,11 @@ export default function AddToCart({ product }: { product: Product }) {
             </button>
           ))}
         </div>
+        {product.category === "sudaderas" && (
+          <p className="mt-2 text-xs text-muted">
+            Solo disponible en tallas S, M y L.
+          </p>
+        )}
       </div>
 
       <div>
@@ -67,6 +77,28 @@ export default function AddToCart({ product }: { product: Product }) {
             />
           ))}
         </div>
+      </div>
+
+      <div>
+        <label
+          htmlFor="custom-spec"
+          className="mb-2 block text-sm font-medium"
+        >
+          Personalizar{" "}
+          <span className="font-normal text-muted">(opcional)</span>
+        </label>
+        <textarea
+          id="custom-spec"
+          value={custom}
+          onChange={(e) => setCustom(e.target.value.slice(0, CUSTOM_MAX))}
+          rows={4}
+          maxLength={CUSTOM_MAX}
+          placeholder="Escribe aquí tus especificaciones: bordados, parches, retoques de lavado, largo del bajo, iniciales…"
+          className="w-full resize-y rounded-xl border border-border bg-surface px-4 py-3 text-sm leading-relaxed outline-none transition-colors focus:border-accent"
+        />
+        <p className="mt-1 text-right text-xs text-muted">
+          {custom.length}/{CUSTOM_MAX}
+        </p>
       </div>
 
       <button

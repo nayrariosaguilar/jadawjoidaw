@@ -80,6 +80,14 @@ export default function CarritoPage() {
               <p className="text-sm text-muted">
                 Talla {item.size} · {item.color}
               </p>
+              {item.custom && (
+                <p className="mt-1 whitespace-pre-wrap rounded-lg bg-background px-3 py-2 text-xs text-muted">
+                  <span className="font-medium text-foreground">
+                    Personalización:
+                  </span>{" "}
+                  {item.custom}
+                </p>
+              )}
               <p className="mt-1 text-sm font-medium">
                 {formatPrice(item.price)}
               </p>

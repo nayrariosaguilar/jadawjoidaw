@@ -10,13 +10,14 @@ import {
 } from "react";
 
 export interface CartItem {
-  id: string; // slug|talla|color
+  id: string; // slug|talla|color|custom
   slug: string;
   name: string;
   price: number;
   size: string;
   color: string;
   qty: number;
+  custom?: string; // texto libre con la personalización pedida por el cliente
 }
 
 interface CartContextValue {
@@ -41,13 +42,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Cargamos el carrito guardado solo en el cliente para evitar
   // diferencias de hidratación entre servidor y navegador.
   useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) setItems(JSON.parse(raw) as CartItem[]);
-    } catch {
-      // localStorage no disponible o JSON inválido: empezamos vacíos.
-    }
-    setHydrated(true);
+    const timer = window.setTimeout(() => {
+      try {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        if (raw) setItems(JSON.parse(raw) as CartItem[]);
+      } catch {
+        // localStorage no disponible o JSON inválido: empezamos vacíos.
+      }
+      setHydrated(true);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -61,7 +66,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const addItem = useCallback(
     (item: Omit<CartItem, "id" | "qty">, qty = 1) => {
-      const id = `${item.slug}|${item.size}|${item.color}`;
+      // Incluimos `custom` en el id para que dos unidades con
+      // personalizaciones distintas no se fusionen en la misma línea.
+      const id = `${item.slug}|${item.size}|${item.color}|${item.custom ?? ""}`;
       setItems((prev) => {
         const existing = prev.find((i) => i.id === id);
         if (existing) {

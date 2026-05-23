@@ -39,8 +39,8 @@ const SINGULAR: Record<Category, string> = {
 };
 
 const SIZES: Record<Category, string[]> = {
-  camisetas: ["XS", "S", "M", "L", "XL"],
-  sudaderas: ["S", "M", "L", "XL", "XXL"],
+  camisetas: ["S", "M", "L"],
+  sudaderas: ["S", "M", "L"],
   pantalones: ["38", "40", "42", "44", "46", "48"],
 };
 
@@ -230,10 +230,229 @@ function buildCategory(category: Category): Product[] {
   });
 }
 
+// Camisetas reales del drop: seis colores de la misma camiseta básica con
+// parche bordado en forma de cruz gótica con inicial. Precio único 35€ y
+// tallas S/M/L. La personalización se pide en la ficha de producto.
+const CAMISETAS_DROP: Product[] = [
+  {
+    slug: "camiseta-cruz-beige",
+    name: "Camiseta Cruz Beige",
+    category: "camisetas",
+    price: 35,
+    image: "/products/camiseta_carne.png",
+    tag: "Best seller",
+    shortDescription:
+      "Camiseta beige arena · parche bordado cruz gótica.",
+    description:
+      "Camiseta de algodón con caída regular en tono beige arena. Parche bordado en el pecho con cruz gótica e inicial. Cuello redondo reforzado y costuras limpias. Pieza versátil para cualquier outfit.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Beige", hex: "#d6c7ad" }],
+    gradient: { from: "#e3d5b8", to: "#bda77f" },
+  },
+  {
+    slug: "camiseta-cruz-roja",
+    name: "Camiseta Cruz Roja",
+    category: "camisetas",
+    price: 35,
+    image: "/products/camiseta_roja.png",
+    tag: "Nuevo",
+    shortDescription:
+      "Camiseta roja intensa · parche bordado cruz gótica.",
+    description:
+      "Camiseta de algodón con caída regular en rojo intenso. Parche bordado en el pecho con cruz gótica e inicial. Cuello redondo reforzado y costuras limpias. Color de impacto para destacar.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Rojo", hex: "#c0202c" }],
+    gradient: { from: "#7c2d3a", to: "#3f1620" },
+  },
+  {
+    slug: "camiseta-cruz-marino",
+    name: "Camiseta Cruz Marino",
+    category: "camisetas",
+    price: 35,
+    image: "/products/camiseta_azul.png",
+    shortDescription:
+      "Camiseta azul marino · parche bordado cruz gótica.",
+    description:
+      "Camiseta de algodón con caída regular en azul marino profundo. Parche bordado en el pecho con cruz gótica e inicial. Cuello redondo reforzado y costuras limpias. Tono sobrio y elegante.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Marino", hex: "#1e293b" }],
+    gradient: { from: "#1e3a5f", to: "#0f172a" },
+  },
+  {
+    slug: "camiseta-cruz-gris",
+    name: "Camiseta Cruz Gris",
+    category: "camisetas",
+    price: 35,
+    image: "/products/camiseta_gris.png",
+    shortDescription:
+      "Camiseta gris jaspeada · parche bordado cruz gótica.",
+    description:
+      "Camiseta de algodón con caída regular en gris jaspeado. Parche bordado en el pecho con cruz gótica e inicial. Cuello redondo reforzado y costuras limpias. Esencial cómodo y atemporal.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Gris", hex: "#9ca3af" }],
+    gradient: { from: "#d4d4d8", to: "#9ca3af" },
+  },
+  {
+    slug: "camiseta-cruz-blanca",
+    name: "Camiseta Cruz Blanca",
+    category: "camisetas",
+    price: 35,
+    image: "/products/camiseta_blanca.png",
+    shortDescription:
+      "Camiseta blanco óptico · parche bordado cruz gótica.",
+    description:
+      "Camiseta de algodón con caída regular en blanco óptico. Parche bordado en el pecho con cruz gótica e inicial. Cuello redondo reforzado y costuras limpias. Pieza limpia y fácil de combinar.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Blanco", hex: "#f5f5f5" }],
+    gradient: { from: "#fafafa", to: "#d4d4d8" },
+  },
+  {
+    slug: "camiseta-cruz-negra",
+    name: "Camiseta Cruz Negra",
+    category: "camisetas",
+    price: 35,
+    image: "/products/camiseta_negra.png",
+    shortDescription:
+      "Camiseta negro profundo · parche bordado cruz gótica.",
+    description:
+      "Camiseta de algodón con caída regular en negro profundo. Parche bordado en el pecho con cruz gótica e inicial. Cuello redondo reforzado y costuras limpias. Pieza esencial de la cápsula negra.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Negro", hex: "#0a0a0a" }],
+    gradient: { from: "#1f2937", to: "#0a0a0a" },
+  },
+];
+
+// Sudaderas reales del drop: cinco colores del mismo hoodie oversize con
+// parche bordado en forma de cruz gótica con inicial. Precio único 60€ y
+// tallas S/M/L. La personalización se pide en la ficha de producto.
+const SUDADERAS_DROP: Product[] = [
+  {
+    slug: "sudadera-hoodie-gris",
+    name: "Sudadera Hoodie Gris",
+    category: "sudaderas",
+    price: 60,
+    image: "/products/sudadera-gris.png",
+    tag: "Best seller",
+    shortDescription:
+      "Hoodie oversize gris jaspeado · parche bordado cruz gótica.",
+    description:
+      "Hoodie oversize en gris jaspeado con felpa cepillada de tacto suave, capucha amplia y hombros caídos. Parche bordado en el pecho con cruz gótica y inicial. Acabado pesado y caída holgada para uso diario.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Gris", hex: "#9ca3af" }],
+    gradient: { from: "#d4d4d8", to: "#9ca3af" },
+  },
+  {
+    slug: "sudadera-hoodie-blanca",
+    name: "Sudadera Hoodie Blanca",
+    category: "sudaderas",
+    price: 60,
+    image: "/products/sudadera-blanca.png",
+    tag: "Nuevo",
+    shortDescription:
+      "Hoodie oversize blanco roto · parche bordado cruz gótica.",
+    description:
+      "Hoodie oversize en blanco roto con felpa cepillada de tacto suave, capucha amplia y hombros caídos. Parche bordado en el pecho con cruz gótica y inicial. Pieza limpia y versátil para combinar con todo.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Blanco", hex: "#f5f5f5" }],
+    gradient: { from: "#fafafa", to: "#d4d4d8" },
+  },
+  {
+    slug: "sudadera-hoodie-negra",
+    name: "Sudadera Hoodie Negra",
+    category: "sudaderas",
+    price: 60,
+    image: "/products/sudadera-negra.png",
+    shortDescription:
+      "Hoodie oversize negro · parche bordado cruz gótica.",
+    description:
+      "Hoodie oversize en negro profundo con felpa cepillada de tacto suave, capucha amplia y hombros caídos. Parche bordado en el pecho con cruz gótica y inicial. Pieza esencial de la cápsula negra.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Negro", hex: "#0a0a0a" }],
+    gradient: { from: "#1f2937", to: "#0a0a0a" },
+  },
+  {
+    slug: "sudadera-hoodie-marino",
+    name: "Sudadera Hoodie Marino",
+    category: "sudaderas",
+    price: 60,
+    image: "/products/sudadera-marino.png",
+    shortDescription:
+      "Hoodie oversize azul marino · parche bordado cruz gótica.",
+    description:
+      "Hoodie oversize en azul marino con felpa cepillada de tacto suave, capucha amplia y hombros caídos. Parche bordado en el pecho con cruz gótica y inicial. Tono profundo y caída holgada.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Marino", hex: "#1e293b" }],
+    gradient: { from: "#1e3a5f", to: "#0f172a" },
+  },
+  {
+    slug: "sudadera-hoodie-burdeos",
+    name: "Sudadera Hoodie Burdeos",
+    category: "sudaderas",
+    price: 60,
+    image: "/products/sudadera-burdeos.png",
+    shortDescription:
+      "Hoodie oversize burdeos · parche bordado cruz gótica.",
+    description:
+      "Hoodie oversize en burdeos con felpa cepillada de tacto suave, capucha amplia y hombros caídos. Parche bordado en el pecho con cruz gótica y inicial. Tono cálido para destacar sin estridencias.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Burdeos", hex: "#6b2737" }],
+    gradient: { from: "#7c2d3a", to: "#3f1620" },
+  },
+];
+
+// Pantalones reales del drop: tres lavados de un mismo modelo bootcut con
+// bajo deshilachado y cruz bordada. Precio único 55€ y tallas S/M/L.
+const PANTALONES_DROP: Product[] = [
+  {
+    slug: "pantalon-denim-negro",
+    name: "Pantalón Denim Negro",
+    category: "pantalones",
+    price: 55,
+    image: "/products/pantalon_negro.png",
+    tag: "Best seller",
+    shortDescription:
+      "Denim negro lavado · bota ligera con bajo crudo deshilachado.",
+    description:
+      "Vaquero negro con lavado envejecido y arrugas marcadas, bota ligeramente acampanada y bajo crudo deshilachado. Bordado de cruz gótica con inicial en el bolsillo delantero. Caída fluida y tacto firme.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Negro", hex: "#0a0a0a" }],
+    gradient: { from: "#1f2937", to: "#0a0a0a" },
+  },
+  {
+    slug: "pantalon-denim-azul",
+    name: "Pantalón Denim Azul",
+    category: "pantalones",
+    price: 55,
+    image: "/products/pantalon_azul.png",
+    tag: "Nuevo",
+    shortDescription:
+      "Denim azul medio · bota ligera con bajo crudo deshilachado.",
+    description:
+      "Vaquero azul medio con lavado vintage, arrugas naturales y bota ligeramente acampanada con bajo crudo deshilachado. Bordado de cruz gótica con inicial en el bolsillo delantero.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Azul", hex: "#1e3a5f" }],
+    gradient: { from: "#1e3a5f", to: "#0f172a" },
+  },
+  {
+    slug: "pantalon-denim-gris",
+    name: "Pantalón Denim Gris",
+    category: "pantalones",
+    price: 55,
+    image: "/products/pantalon_gris.png",
+    shortDescription:
+      "Denim gris envejecido · bota ligera con bajo crudo deshilachado.",
+    description:
+      "Vaquero gris con lavado sucio y arrugas marcadas, bota ligeramente acampanada y bajo crudo deshilachado. Bordado de cruz gótica con inicial en el bolsillo delantero. Estética grunge urbana.",
+    sizes: ["S", "M", "L"],
+    colors: [{ name: "Gris", hex: "#6b7280" }],
+    gradient: { from: "#9ca3af", to: "#4b5563" },
+  },
+];
+
 export const products: Product[] = [
-  ...buildCategory("camisetas"),
-  ...buildCategory("sudaderas"),
-  ...buildCategory("pantalones"),
+  ...CAMISETAS_DROP,
+  ...SUDADERAS_DROP,
+  ...PANTALONES_DROP,
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {
